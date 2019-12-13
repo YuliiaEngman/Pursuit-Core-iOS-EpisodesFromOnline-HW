@@ -16,6 +16,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ShowSearchAPI.fetchShow(for: "do") { (result) in
+            switch result{
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                dump(data)
+            }
+        }
         // Do any additional setup after loading the view.
     }
 

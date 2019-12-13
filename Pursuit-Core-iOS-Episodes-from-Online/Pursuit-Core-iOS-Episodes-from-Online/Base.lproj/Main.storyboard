@@ -62,6 +62,11 @@
                                                 <constraint firstItem="aG2-gp-GdI" firstAttribute="leading" secondItem="Clu-NY-U9o" secondAttribute="leading" id="zUi-qA-Uwf"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="showImage" destination="aG2-gp-GdI" id="xzM-Sx-7tJ"/>
+                                            <outlet property="showNameLabel" destination="BCo-Jd-YQa" id="Vds-gj-T0O"/>
+                                            <outlet property="showRatingLabel" destination="X5q-bX-dGg" id="PD4-5J-7Ce"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
