@@ -10,7 +10,7 @@ import Foundation
 
 struct ShowSearchAPI {
     static func fetchShow(for searchQuery: String,
-                          completion: @escaping (Result<[ShowSearch], AppError>) -> ()) {
+                          completion: @escaping (Result<[Show], AppError>) -> ()) {
         
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "girls"
         
@@ -32,10 +32,8 @@ struct ShowSearchAPI {
                 do {
                     let searchResults = try JSONDecoder().decode([ShowSearch].self, from: data)
                     
-                    // 1. TODO: use searchResults to create an array of recipes
-                    //let shows = searchResults.shows.map {$0.shows}
-                    let shows = searchResults.map{$0.self}
-                    // 2. TODO: capture the array of recipes in the completion handler
+                    let shows = searchResults.map{$0.show}
+ 
                     completion(.success(shows))
                 } catch {
                     completion(.failure(.decodingError(error)))

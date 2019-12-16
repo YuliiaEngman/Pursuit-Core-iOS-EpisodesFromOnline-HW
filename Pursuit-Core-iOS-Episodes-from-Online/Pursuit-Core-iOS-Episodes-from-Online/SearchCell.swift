@@ -14,16 +14,26 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var showNameLabel: UILabel!
     @IBOutlet weak var showRatingLabel: UILabel!
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func configureCell(for show: Show) {
+        showNameLabel.text = show.name
+        
+        guard let imageURLString = show.image?.original else {
+            // TODO set a default image
+            return
+        }
+        
+        showImage.getImage(with: imageURLString) { [weak self] (result) in
+            switch result {
+            case .failure:
+                DispatchQueue.main.async {
+                    self?.showImage.image =
+                        UIImage(systemName: "play.rectangle")
+                }
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.showImage.image = image
+                }
+            }
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
